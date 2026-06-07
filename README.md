@@ -11,6 +11,12 @@
 * 点击齿轮图标菜单下的 **扩展**
 * 搜索并导入：`https://github.com/felixtsu/pxt-arcade-yahud`
 
+## 示例项目
+
+* **在线试玩**：https://makecode.com/_4R2aY30EMR2z
+* **查看/编辑代码**：https://arcade.makecode.com/#pub:github:felixtsu/pxt-arcade-yahud-demo
+* **插件库介绍页**：https://works.cubicbird.com/plugins-library/
+
 ## 积木块
 
 导入扩展后，工具箱会出现 **自定义 HUD** 分类（通过 `yahud.ts` 顶部的 `//% block="自定义 HUD"` 注释注册）。
