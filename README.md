@@ -13,8 +13,10 @@
 
 ## 示例项目
 
+示例代码在仓库的 `demo/` 子目录中，与插件同仓维护。
+
 * **在线试玩**：https://makecode.com/_4R2aY30EMR2z
-* **查看/编辑代码**：https://arcade.makecode.com/#pub:github:felixtsu/pxt-arcade-yahud-demo
+* **查看/编辑代码**：https://arcade.makecode.com/#pub:github:felixtsu/pxt-arcade-yahud/demo
 * **插件库介绍页**：https://works.cubicbird.com/plugins-library/
 
 ## 积木块
@@ -71,6 +73,7 @@ ammo.setValue(10)
 * `main.ts` — 仅保留空的 namespace 声明，不含任何游戏逻辑
 * `yahud.ts` — 插件核心实现与所有 blocks 注释
 * `test.ts` — 本地测试用，作为插件导入时不会编译
+* `demo/` — 示例游戏项目，依赖本插件（`file:../`）
 
 ## 编辑此项目
 
