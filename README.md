@@ -15,8 +15,8 @@
 
 示例代码在仓库的 `demo/` 子目录中，与插件同仓维护。
 
-* **在线试玩**：https://makecode.com/_4R2aY30EMR2z
-* **查看/编辑代码**：https://arcade.makecode.com/#pub:github:felixtsu/pxt-arcade-yahud/demo
+* **在线试玩 / 查看代码**：https://makecode.com/_ECiWjoJ3y0fg
+* **源码（仓库内）**：[`demo/main.ts`](demo/main.ts)
 * **插件库介绍页**：https://works.cubicbird.com/plugins-library/
 
 ## 积木块

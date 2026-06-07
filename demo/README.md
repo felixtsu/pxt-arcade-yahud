@@ -8,8 +8,10 @@
 - **A**：拾取金币（左下角数字 +1，分数 +1）
 - **B**：发射子弹（右下角弹药 -1）
 
-## 导入
+## 在线体验
 
-* 打开 [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* **导入** → **导入 URL**
-* 粘贴：`https://github.com/felixtsu/pxt-arcade-yahud/demo`
+* **试玩 / 编辑**：https://makecode.com/_ECiWjoJ3y0fg
+
+## 源码
+
+本目录的 `main.ts` 是示例源码，与上面的 MakeCode 分享项目保持同步。
