@@ -1,0 +1,10 @@
+built/
+libs/
+node_modules/
+pxt_modules/
+.pxt/
+projects/
+package.json
+package-lock.json
+*.sw?
+.DS_Store

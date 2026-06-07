@@ -1,0 +1,20 @@
+{
+    "name": "pxt-arcade-yahud",
+    "version": "0.1.0",
+    "description": "Add custom HUD slots (icon + number) on top of the default Arcade HUD",
+    "dependencies": {
+        "device": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "yahud.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true,
+    "supportedTargets": [
+        "arcade"
+    ]
+}
