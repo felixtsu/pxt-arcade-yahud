@@ -1,4 +1,4 @@
-//% icon="\uf2bb" color="#5C4069" weight=75 blockGap=8 block="自定义 HUD"
+//% icon="\uf2bb" color="#5C4069" weight=75 blockGap=12 block="自定义 HUD"
 //% groups='["创建", "数值", "显示"]'
 namespace 自定义HUD { }
 
@@ -13,6 +13,8 @@ enum YahudCorner {
     BottomRight = 3
 }
 
+//% blockNamespace=自定义HUD
+//% blockGap=8
 class HudSlot {
     protected _icon: Image;
     protected _value: number;
@@ -38,61 +40,92 @@ class HudSlot {
         this._destroyed = false;
     }
 
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示" blockSetVariable="hudSlot"
-    //% blockCombine block="图标" callInDebugger
-    get icon(): Image {
-        return this._icon;
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示" blockSetVariable="hudSlot"
+    //% group="数值" blockSetVariable="hudSlot"
     //% blockCombine block="数值" callInDebugger
     get value(): number {
         return this._value;
     }
 
-    //% block
-    //% blockNamespace=自定义HUD
     //% group="显示" blockSetVariable="hudSlot"
     //% blockCombine block="可见" callInDebugger
     get visible(): boolean {
         return this._visible && !this._destroyed;
     }
 
+    //% block="设置 $this(hudSlot) 图标为 $icon=screen_image_picker"
+    //% blockId=yahud_setIcon
+    //% group="显示"
+    //% weight=80
+    //% blockGap=8
     setIcon(icon: Image) {
         this._icon = icon;
     }
 
+    //% block="设置 $this(hudSlot) 数值为 $value"
+    //% blockId=yahud_setValue
+    //% value.defl=0
+    //% group="数值"
+    //% weight=90
     setValue(value: number) {
         this._value = value | 0;
     }
 
+    //% block="将 $this(hudSlot) 数值改变 $delta"
+    //% blockId=yahud_changeValue
+    //% delta.defl=1
+    //% group="数值"
+    //% weight=89
+    //% blockGap=8
     changeValue(delta: number) {
         this._value = (this._value + (delta | 0)) | 0;
     }
 
+    //% block="设置 $this(hudSlot) 可见 $on=toggleOnOff"
+    //% blockId=yahud_setVisible
+    //% group="显示"
+    //% weight=70
     setVisible(on: boolean) {
         this._visible = on;
     }
 
+    //% block="设置 $this(hudSlot) 边距为 $padding"
+    //% blockId=yahud_setPadding
+    //% padding.defl=2
+    //% group="显示"
+    //% weight=69
     setPadding(padding: number) {
         this._padding = Math.max(0, padding | 0);
     }
 
+    //% block="设置 $this(hudSlot) 偏移||x $x y $y"
+    //% blockId=yahud_setOffset
+    //% x.defl=0
+    //% y.defl=0
+    //% group="显示"
+    //% weight=68
     setOffset(x: number, y: number) {
         this._offsetX = x | 0;
         this._offsetY = y | 0;
     }
 
+    //% block="设置 $this(hudSlot) 颜色||背景 $bg 边框 $border 文字 $font"
+    //% blockId=yahud_setColors
+    //% bg.shadow=colorindexpicker
+    //% border.shadow=colorindexpicker
+    //% font.shadow=colorindexpicker
+    //% group="显示"
+    //% weight=67
     setColors(bg: number, border: number, font: number) {
         this._bgColor = bg;
         this._borderColor = border;
         this._fontColor = font;
     }
 
+    //% block="销毁 $this(hudSlot)"
+    //% blockId=yahud_destroy
+    //% group="显示"
+    //% weight=50
+    //% blockGap=8
     destroy() {
         if (this._destroyed) return;
         this._destroyed = true;
@@ -157,114 +190,18 @@ namespace yahud {
     const SLOTS_KEY = "YAHUD_SLOTS";
     const RENDERABLE_KEY = "YAHUD_RENDERABLE";
 
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="创建"
-    //% blockId=yahud_create
     //% block="在 $corner 创建 HUD 槽位"
+    //% blockId=yahud_create
+    //% blockNamespace=自定义HUD
     //% blockSetVariable="hudSlot"
     //% corner.defl=YahudCorner.BottomLeft
+    //% group="创建"
     //% weight=100
+    //% blockGap=8
     export function create(corner: YahudCorner): HudSlot {
         const slot = new HudSlot(corner);
         _addSlot(slot);
         return slot;
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_setIcon
-    //% block="设置 $hudSlot 图标为 $icon=screen_image_picker"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% weight=90
-    export function setIcon(hudSlot: HudSlot, icon: Image) {
-        hudSlot.setIcon(icon);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="数值"
-    //% blockId=yahud_setValue
-    //% block="设置 $hudSlot 数值为 $value"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% value.defl=0
-    //% weight=100
-    export function setValue(hudSlot: HudSlot, value: number) {
-        hudSlot.setValue(value);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="数值"
-    //% blockId=yahud_changeValue
-    //% block="将 $hudSlot 数值改变 $delta"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% delta.defl=1
-    //% weight=99
-    export function changeValue(hudSlot: HudSlot, delta: number) {
-        hudSlot.changeValue(delta);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_setVisible
-    //% block="设置 $hudSlot 可见 $on=toggleOnOff"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% weight=88
-    export function setVisible(hudSlot: HudSlot, on: boolean) {
-        hudSlot.setVisible(on);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_setPadding
-    //% block="设置 $hudSlot 边距为 $padding"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% padding.defl=2
-    //% weight=87
-    export function setPadding(hudSlot: HudSlot, padding: number) {
-        hudSlot.setPadding(padding);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_setOffset
-    //% block="设置 $hudSlot 偏移 x $x y $y"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% x.defl=0
-    //% y.defl=0
-    //% weight=86
-    export function setOffset(hudSlot: HudSlot, x: number, y: number) {
-        hudSlot.setOffset(x, y);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_setColors
-    //% block="设置 $hudSlot 颜色 背景 $bg 边框 $border 文字 $font"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% bg.shadow=colorindexpicker
-    //% border.shadow=colorindexpicker
-    //% font.shadow=colorindexpicker
-    //% weight=85
-    export function setColors(hudSlot: HudSlot, bg: number, border: number, font: number) {
-        hudSlot.setColors(bg, border, font);
-    }
-
-    //% block
-    //% blockNamespace=自定义HUD
-    //% group="显示"
-    //% blockId=yahud_destroy
-    //% block="销毁 $hudSlot"
-    //% hudSlot.shadow=variables_get(hudSlot)
-    //% weight=50
-    export function destroy(hudSlot: HudSlot) {
-        hudSlot.destroy();
     }
 
     export function _addSlot(slot: HudSlot) {
